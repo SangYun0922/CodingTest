@@ -1,31 +1,41 @@
-package programmers.level1;
+import java.util.ArrayList;
+import java.util.List;
 
 public class 소수찾기 {
-    public int solution(int n) {
-        int answer = 0;
-        boolean[] sosu =new boolean [n+1];
+    class Solution {
+        public int solution(int n) {
+            int answer = 0;
 
-        for(int i=2; i<=n ; i++)
-            sosu[i]=true;
-        //에라테네스
-        int root=(int)Math.sqrt(n);
+            int[] number = new int[n+1];
 
-        for(int i=2; i<=root; i++){
-            if(sosu[i]==true){
-                for(int j=i; i*j<=n; j++)
-                    sosu[i*j]=false;
+            //2부터 n까지의 수를 배열에 넣는다.
+            for(int i=2; i<=n; i++) {
+                number[i] = i;
             }
+
+            //2부터 시작해서 그의 배수들을 0으로 만든다.
+            //후에 0이면 넘어가고 아니면 그의 배수들을 다시 0으로 만든다.
+            for(int i=2; i<=n; i++) {
+                if(number[i]==0) continue;
+
+                for(int j= 2*i; j<=n; j += i) {
+                    number[j] = 0;
+                }
+            }
+
+            //배열에서 0이 아닌 것들의 개수를 세준다.
+            for(int i=0; i<number.length; i++) {
+                if(number[i]!=0) {
+                    answer++;
+                }
+            }
+
+            return answer;
         }
-        for(int i =2; i<=n; i++)  {
-            if(sosu[i]==true)
-                answer++;
-        }
-        return answer;
     }
 
     public static void main(String[] args) {
         소수찾기 answer = new 소수찾기();
         System.out.println("answer.solution(10) = " + answer.solution(10));
     }
-
 }
