@@ -1,23 +1,21 @@
-public class 문자열내p와y의개수 {
-    boolean solution(String s) {
-        int pCount = 0, yCount = 0;
-        String[] array = s.toLowerCase().split(""); //  소문자로 바꿔서 잘라서 배열에 넣음
+package programmers.level1;
 
-        for (int i = 0; i < array.length; i++) { //for문 돌리면서 p 와 y 카운터 세기
-            if ("p".equals(array[i])) {
-                pCount++;
-            } else if ("y".equals(array[i])) {
-                yCount++;
-            }
+public class 문자열내p와y의개수 {
+    public boolean solution(String s) {
+        int tmp1 = 0, tmp2 = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == 'p' || s.charAt(i) == 'P')
+                tmp1++;
+            else if (s.charAt(i) == 'y' || s.charAt(i) == 'Y')
+                tmp2++;
         }
-        if (pCount != yCount) {
-            return false;
-        }
-        return true;
+        return tmp1 == tmp2;
     }
 
     public static void main(String[] args) {
         문자열내p와y의개수 answer = new 문자열내p와y의개수();
-        System.out.println("answer.solution(\"pPoooyY\") = " + answer.solution("pPoooyY"));
+
+        System.out.println("answer.solution(\"Pyy\") = " + answer.solution("Pyy"));
+
     }
 }
