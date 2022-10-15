@@ -37,7 +37,7 @@ public class Main {
                     max_num = box[i][j];
             }
         }
-        return max_num;
+        return max_num-1;
     }
 
     public static void main(String[] args) throws IOException {
@@ -57,13 +57,6 @@ public class Main {
                 }
             }
         }
-
         System.out.println(bfs());
-        for (int i = 0 ; i < N; i++) {
-            for (int j = 0; j < M; j++) {
-                System.out.print(box[i][j] + " ");
-            }
-            System.out.println();
-        }
     }
 }
