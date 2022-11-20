@@ -23,9 +23,12 @@
 - 겹치는건싫어_20922
 - 부분합_1806
 - 수 고르기_2230
+- ListofUniqueNumbers_13144
+- 세용액_2473
 
 ## goorm
 - Dead Or Alive
 
 # 오늘 푼 문제
 - ListofUniqueNumbers_13144
+- 세용액_2473
