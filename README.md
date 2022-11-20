@@ -28,4 +28,4 @@
 - Dead Or Alive
 
 # 오늘 푼 문제
-- 할인행사
+- ListofUniqueNumbers_13144
