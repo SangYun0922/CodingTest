@@ -5,7 +5,7 @@ public class k진수에서소수개수구하기 {
         String k_num;
         // 먼저 n을 k진수로 변경, 단 10진수라면 바로 String으로 변경
         // Integer.toString()를 이용해서 바꿀 수도 있다.
-        // k_num = String.valueOf(n, k);
+        // k_num = Integer.toString(n, k);
         k_num = kNum(n, k);
         System.out.println(k_num);
         String[] s = k_num.split("0");
