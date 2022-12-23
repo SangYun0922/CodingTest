@@ -40,4 +40,4 @@
 - Dead Or Alive
 
 # 오늘 푼 문제
-- Byte Coin_17521
+- 교점에 별 만들기
