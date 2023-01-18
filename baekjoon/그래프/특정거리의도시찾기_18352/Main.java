@@ -8,9 +8,7 @@ import java.util.*;
 public class Main {
     public static int N, K;
     public static List<List<Integer>> adj;
-    public static List<Integer> answer;
     public static int[] check;
-    public static boolean[] visited;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -21,9 +19,7 @@ public class Main {
         int X = Integer.parseInt(st.nextToken());
 
         adj = new ArrayList<>();
-        answer = new ArrayList<>();
         check = new int[N+1];
-        visited = new boolean[N+1];
 
         for (int i = 0; i <= N; i++) {
             check[i] = 300001;
@@ -40,36 +36,44 @@ public class Main {
             adj.get(r).add(c);
         }
 
-        System.out.println(adj);
-        dfs(X, 0);
+//        dfs(X, 0);
+        bfs(X);
 
+        boolean flag = false;
         for (int i = 0; i <= N; i++) {
-            System.out.println("check[i] = " + check[i]);
-            if (check[i] == K)
-                answer.add(i);
-        }
-
-
-        if (answer.isEmpty())
-            System.out.println(-1);
-        else {
-            Collections.sort(answer);
-            System.out.println(answer);
-        }
-    }
-
-    public static void dfs(int X, int distance) {
-        visited[X] = true;
-        check[X] = Math.min(check[X], distance);
-        System.out.println("X : " + X + " check[x] : " + check[X]);
-        for (int i = 0; i < adj.get(X).size(); i++)
-        {
-            int temp = adj.get(X).get(i);
-            if(!visited[temp]) {
-                System.out.println("temp : " + temp + " distance : " + distance);
-                dfs(temp, distance+1);
+            if (check[i] == K) {
+                System.out.println(i);
+                flag = true;
             }
 
         }
+
+        if (!flag)
+            System.out.println(-1);
     }
+
+    public static void bfs(int X) {
+        Deque<Integer> deque = new ArrayDeque<>();
+        deque.offer(X);
+        check[X] = 0;
+
+        while(!deque.isEmpty()) {
+            int cur_r = deque.pop();
+
+            for (int i = 0; i < adj.get(cur_r).size(); i++) {
+                if (check[adj.get(cur_r).get(i)] == 300001) { // 가장 먼저 도착하는 경우가 최단거리이기 때문에 초기값으로 도착하는 값을 선정
+                    deque.offer(adj.get(cur_r).get(i));
+                    check[adj.get(cur_r).get(i)] = check[cur_r] + 1;
+                }
+            }
+        }
+    }
+//    public static void dfs(int X, int distance) { // 메모리 초과
+//        check[X] = Math.min(check[X], distance);
+//        for (int i = 0; i < adj.get(X).size(); i++)
+//        {
+//            int temp = adj.get(X).get(i);
+//            dfs(temp, distance+1);
+//        }
+//    }
 }
